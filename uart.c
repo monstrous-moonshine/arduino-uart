@@ -22,10 +22,13 @@ static uint8_t uart_rx() {
 }
 
 int main() {
+    // configure LED pin as output
     DDRB |= 0x20;
+
     uart_init(115200);
     while (1) {
-        PINB |= 0x20;
         uart_tx(uart_rx());
+        // toggle LED
+        PINB |= 0x20;
     }
 }
