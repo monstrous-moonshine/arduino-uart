@@ -11,8 +11,8 @@ uart.elf: uart.o
 clean:
 	$(RM) uart.o uart.elf uart.hex
 
-dump: uart.hex
-	avr-objdump -b ihex -m avr5 -D $^
+dump: uart.elf
+	avr-objdump -d $^
 
 flash: uart.hex
 	avrdude -F -V -c arduino -p ATMEGA328P -P $(DEV) -b 115200 -U flash:w:$<:i

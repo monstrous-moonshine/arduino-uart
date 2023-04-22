@@ -1,6 +1,6 @@
 #include <avr/io.h>
 
-static void uart_init(uint32_t baud) {
+static inline void uart_init(uint32_t baud) {
     const uint32_t ubrr = (F_CPU / 4 / baud - 1) / 2;
     UBRR0H = (uint8_t)(ubrr >> 8);
     UBRR0L = (uint8_t)(ubrr >> 0);
@@ -9,13 +9,13 @@ static void uart_init(uint32_t baud) {
     UCSR0C = (3 << UCSZ00);
 }
 
-static void uart_tx(uint8_t data) {
+static inline void uart_tx(uint8_t data) {
     while (!(UCSR0A & (1 << UDRE0)))
         ;
     UDR0 = data;
 }
 
-static uint8_t uart_rx() {
+static inline uint8_t uart_rx() {
     while (!(UCSR0A & (1 << RXC0)))
         ;
     return UDR0;
