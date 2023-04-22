@@ -29,3 +29,5 @@ $ picocom -b 115200 /dev/ttyACM0
 ```
 
 Arduino will echo whatever you type into the terminal, and with each keypress also toggle the LED.
+
+To exit picocom, you'll have to press `C-a C-x`.
