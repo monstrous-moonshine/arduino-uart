@@ -1,6 +1,6 @@
 #include <avr/io.h>
 
-static void uart_init() {
+void uart_init() {
 #define BAUD 115200
 #define BAUD_TOL 3
 #include <util/setbaud.h>
@@ -13,13 +13,13 @@ static void uart_init() {
     UCSR0C = (3 << UCSZ00);
 }
 
-static void uart_tx(uint8_t data) {
+void uart_tx(uint8_t data) {
     while (!(UCSR0A & (1 << UDRE0)))
         ;
     UDR0 = data;
 }
 
-static uint8_t uart_rx() {
+uint8_t uart_rx() {
     while (!(UCSR0A & (1 << RXC0)))
         ;
     return UDR0;
