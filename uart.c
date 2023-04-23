@@ -16,14 +16,18 @@ void uart_init() {
 }
 
 static void uart_tx(uint8_t data) {
+#ifdef UART_SYNC_TX
     while (!(UCSR0A & (1 << UDRE0)))
         ;
+#endif
     UDR0 = data;
 }
 
 static uint8_t uart_rx() {
+#ifdef UART_SYNC_RX
     while (!(UCSR0A & (1 << RXC0)))
         ;
+#endif
     return UDR0;
 }
 
