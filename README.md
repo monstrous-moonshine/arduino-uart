@@ -1,4 +1,4 @@
-# arduino-uart
+# arduino-uart-baremetal
 A minimal uart echo example with the arduino.
 
 ## Build
@@ -15,7 +15,7 @@ $ make flash
 
 If you get permission errors on `/dev/ttyACM0`, you have two options:
 1. Run as root (use `sudo` or something), or
-2. Add yourself to the `uucp` group
+2. Add yourself to the `uucp` group (or whatever group owns `/dev/ttyACM0`, check with `stat -c%G /dev/ttyACM0`)
 
 You can add yourself to the `uucp` group with the following command:
 ```console
